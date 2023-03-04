@@ -149,7 +149,7 @@
     <img src={cpaLogo} class="logo svelte" alt="cycloplomberie Amiens Logo" />
   </div>
   <h1>Formulaire</h1>
-  <form class="container">
+  <div class="container">
     {#if count === 1}
       {#each level1 as { id, name1, src }}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -236,20 +236,34 @@
     {/if}
 
     {#if goform === true || etape1 === "Pose"}
-      <h1>Contact Us</h1>
-      <div class="info">
-        <input class="fname" type="text" name="name" placeholder="Full name" />
-        <input type="text" name="name" placeholder="Email" />
-        <input type="text" name="name" placeholder="Phone number" />
-        <input type="text" name="name" placeholder="Website" />
-      </div>
-      <p>Message</p>
-      <div>
-        <textarea rows="4" />
-      </div>
-      <button type="submit" href="/">Submit</button>
+      <form action="" class="cpa-form">
+        Vous nous contactez pour {etape1}
+        {#if etape2}
+          {etape2}
+        {/if}
+        {#if etape3}
+          {etape3}
+        {/if}
+        <h2>Renseignements</h2>
+        <div class="info">
+          <input
+            class="fname"
+            type="text"
+            name="name"
+            placeholder="Full name"
+          />
+          <input type="text" name="name" placeholder="Email" />
+          <input type="text" name="name" placeholder="Phone number" />
+          <input type="text" name="name" placeholder="Website" />
+        </div>
+        <p>Message</p>
+        <div>
+          <textarea rows="4" />
+        </div>
+        <button type="submit" href="/">Submit</button>
+      </form>
     {/if}
-  </form>
+  </div>
   <div>
     {#if count > 1 && etape1 !== "Pose"}
       <button on:click={() => (goform = false)} on:click={decrement}>
@@ -263,16 +277,14 @@
       </button>
     {/if}
   </div>
-  <p>étape {count}</p>
+  <!-- <p>étape {count}</p>
   <ul>
     <li>{etape1}</li>
     <li>{etape2}</li>
     <li>{etape3}</li>
     <li>{etape4}</li>
     <li>{goform}</li>
-  </ul>
-
-  <p class="read-the-docs">Click on the Vite and Svelte logos to learn more</p>
+  </ul> -->
 </main>
 
 <style>

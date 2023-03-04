@@ -147,6 +147,28 @@ h2 {
 .titre-chaudiere {
   width: 100%;
 }
+.cpa-form {
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items:center;
+  justify-content: space-around;
+  padding: 5px;
+  width: 60vw;
+  height: auto;
+  background: var(--fond);
+  border: 2px solid var(--bleu1);
+  border-radius: 20px;
+}
+.cpa-form .info{
+  margin: 0 auto;
+  width: 66%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: space-around;
+}
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -156,22 +178,24 @@ h2 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--bleu-sombre);
+  color: var(--bleu1);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: white;
+  background-color: var(--orange);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--bleu1);
+  color: var(--orange) ;
 }
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 
 /* @media (prefers-color-scheme: light) {
   :root {
