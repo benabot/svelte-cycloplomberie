@@ -25,121 +25,121 @@
     { id: "1-3", name1: "Entretien", src: "/pictos/entretien.svg" },
   ];
   let level21 = [
-    { id: "21-1", name1: "Fuite", src: "/src/assets/pictos/fuite.svg" },
+    { id: "21-1", name1: "Fuite", src: "/pictos/fuite.svg" },
     {
       id: "21-2",
       name1: "Canalisation bouchée",
-      src: "/src/assets/pictos/canalisation-bouchee.svg",
+      src: "/pictos/canalisation-bouchee.svg",
     },
   ];
   let level22 = [
     {
       id: "22-1",
       name1: "Au sol",
-      src: "/src/assets/pictos/chaudiere-sol.svg",
+      src: "/pictos/chaudiere-sol.svg",
       prix: "90",
     },
     {
       id: "22-2",
       name1: "Murale",
-      src: "/src/assets/pictos/chaudiere-murale.svg",
+      src: "/pictos/chaudiere-murale.svg",
       prix: "70",
     },
   ];
   let level31 = [
-    { id: "31-1", name1: "Évier", src: "/src/assets/pictos/evier.svg" },
+    { id: "31-1", name1: "Évier", src: "/pictos/evier.svg" },
     {
       id: "31-2",
       name1: "Lavabo",
-      src: "/src/assets/pictos/lavabo.svg",
+      src: "/pictos/lavabo.svg",
     },
     {
       id: "31-3",
       name1: "Baignoire",
-      src: "/src/assets/pictos/baignoire.svg",
+      src: "/pictos/baignoire.svg",
     },
     {
       id: "31-4",
       name1: "Douche",
-      src: "/src/assets/pictos/douche.svg",
+      src: "/pictos/douche.svg",
     },
     {
       id: "31-5",
       name1: "WC classiques",
-      src: "/src/assets/pictos/wc.svg",
+      src: "/pictos/wc.svg",
     },
     {
       id: "31-6",
       name1: "WC suspendues",
-      src: "/src/assets/pictos/wc-suspendus.svg",
+      src: "/pictos/wc-suspendus.svg",
     },
     {
       id: "31-7",
       name1: "Lave-linge",
-      src: "/src/assets/pictos/lave-linge.svg",
+      src: "/pictos/lave-linge.svg",
     },
     {
       id: "31-8",
       name1: "Lave-vaisselle",
-      src: "/src/assets/pictos/lave-vaisselle.svg",
+      src: "/pictos/lave-vaisselle.svg",
     },
     {
       id: "31-9",
       name1: "Autres",
-      src: "/src/assets/pictos/autre.svg",
+      src: "/pictos/autre.svg",
     },
   ];
   let level32 = [
     {
       id: "32-10",
       name1: "Canalisation",
-      src: "/src/assets/pictos/canalisation.svg",
+      src: "/pictos/canalisation.svg",
     },
     {
       id: "32-11",
       name1: "Arrivée d'eau",
-      src: "/src/assets/pictos/arrivee-eau.svg",
+      src: "/pictos/arrivee-eau.svg",
     },
-    { id: "32-1", name1: "Évier", src: "/src/assets/pictos/evier.svg" },
+    { id: "32-1", name1: "Évier", src: "/pictos/evier.svg" },
     {
       id: "32-2",
       name1: "Lavabo",
-      src: "/src/assets/pictos/lavabo.svg",
+      src: "/pictos/lavabo.svg",
     },
     {
       id: "32-3",
       name1: "Baignoire",
-      src: "/src/assets/pictos/baignoire.svg",
+      src: "/pictos/baignoire.svg",
     },
     {
       id: "32-4",
       name1: "Douche",
-      src: "/src/assets/pictos/douche.svg",
+      src: "/pictos/douche.svg",
     },
     {
       id: "32-5",
       name1: "WC classiques",
-      src: "/src/assets/pictos/wc.svg",
+      src: "/pictos/wc.svg",
     },
     {
       id: "32-6",
       name1: "WC suspendues",
-      src: "/src/assets/pictos/wc-suspendus.svg",
+      src: "/pictos/wc-suspendus.svg",
     },
     {
       id: "32-7",
       name1: "Lave-linge",
-      src: "/src/assets/pictos/lave-linge.svg",
+      src: "/pictos/lave-linge.svg",
     },
     {
       id: "32-8",
       name1: "Lave-vaisselle",
-      src: "/src/assets/pictos/lave-vaisselle.svg",
+      src: "/pictos/lave-vaisselle.svg",
     },
     {
       id: "32-9",
       name1: "Autres",
-      src: "/src/assets/pictos/autre.svg",
+      src: "/pictos/autre.svg",
     },
   ];
 </script>
