@@ -20,9 +20,9 @@
   let etape6;
   let goform = false;
   let level1 = [
-    { id: "1-1", name1: "Dépannage", src: "/src/assets/pictos/depannage.svg" },
-    { id: "1-2", name1: "Pose", src: "/src/assets/pictos/pose.svg" },
-    { id: "1-3", name1: "Entretien", src: "/src/assets/pictos/entretien.svg" },
+    { id: "1-1", name1: "Dépannage", src: "/pictos/depannage.svg" },
+    { id: "1-2", name1: "Pose", src: "/pictos/pose.svg" },
+    { id: "1-3", name1: "Entretien", src: "/pictos/entretien.svg" },
   ];
   let level21 = [
     { id: "21-1", name1: "Fuite", src: "/src/assets/pictos/fuite.svg" },
@@ -237,12 +237,12 @@
 
     {#if goform === true || etape1 === "Pose"}
       <form action="" class="cpa-form">
-        Vous nous contactez pour {etape1}
+        Vous nous contactez pour : {etape1.toLowerCase()}
         {#if etape2}
-          {etape2}
+          {etape2.toLowerCase()}
         {/if}
         {#if etape3}
-          {etape3}
+          {etape3.toLowerCase()}
         {/if}
         <h2>Renseignements</h2>
         <div class="info">
@@ -299,9 +299,6 @@
   }
   .logo.svelte:hover {
     filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
   }
 
   .card-elem {
