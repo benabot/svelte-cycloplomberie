@@ -71,6 +71,8 @@ textarea {
 --gris6: #B3B3B3;
 --bleu-sombre: #17495E;
 --fond: #FEFEFE;
+--form-control-color: rebeccapurple;
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -146,13 +148,16 @@ h2 {
 .titre-chaudiere {
   width: 100%;
 }
+.probleme-resume {
+  padding: var(--space-m) 0;
+}
 .cpa-form {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
   align-items:center;
   justify-content: space-around;
-  padding: 5px;
+  padding: var(--space-xs) 5px;
   width: 82vw;
   height: auto;
   background: var(--fond);
@@ -169,13 +174,87 @@ h2 {
   align-items:flex-start;
   justify-content: space-around;
 }
+.strong {
+  font-weight: bold;
+}
+.fuite-localisation .fuite-localisation-list{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 66%;
+  padding: var(--space-2xs) 0 var(--space-s) 0;
+  margin: 0 auto;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
+.fuite-localisation-list {
+  display: grid;
+  place-content: center;
+  /* min-height: 100vh; */
+}
+.form-control {
 
+  font-weight: bold;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+}
+
+.form-control + .form-control {
+  margin-top: 1em;
+}
+
+.form-control:focus-within {
+  color: var(--orange);
+}
+
+input[type=radio] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  -moz-appearance: none;
+       appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--orange);;
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type=radio]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--bleu-clair);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type=radio]:checked::before {
+  transform: scale(1);
+}
+
+input[type=radio]:focus {
+  outline: max(2px, 0.15em) solid cvar(--bleu-clair);
+  outline-offset: max(2px, 0.15em);
+}
 button {
   border-radius: 8px;
   border: 1px solid var(--bleu-sombre);
@@ -192,6 +271,8 @@ button:hover {
   background-color: var(--bleu1);
   color: var(--orange) ;
 }
+
+
 @media (min-width: 768px)  { 
   .container {
     margin: var(--space-l) 0;
