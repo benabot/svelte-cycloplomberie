@@ -10,10 +10,12 @@
   };
   const decrement = () => {
     count -= 1;
+    etape.pop();
+    etape = etape;
 
-    etape[count] = "";
+    // etape[count] = "";
   };
-
+  $: etape = [];
   let etape1;
   let etape2;
   let etape3;
@@ -191,7 +193,10 @@
       {#each level1 as { id, name1, src }}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div
-          on:click={() => (etape1 = name1)}
+          on:click={() => {
+            etape.push(name1);
+            etape = etape;
+          }}
           on:click={increment}
           value={name1}
           class="card"
@@ -202,11 +207,14 @@
         </div>
       {/each}
     {/if}
-    {#if count === 2 && etape1 === "Dépannage"}
+    {#if count === 2 && etape[0] === "Dépannage"}
       {#each level21 as { id, name1, src }}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div
-          on:click={() => (etape2 = name1)}
+          on:click={() => {
+            etape.push(name1);
+            etape = etape;
+          }}
           on:click={increment}
           value={name1}
           class="card"
@@ -217,13 +225,16 @@
         </div>
       {/each}
     {/if}
-    {#if count === 2 && etape1 === "Entretien"}
+    {#if count === 2 && etape[0] === "Entretien"}
       <h2 class="titre-chaudiere">Chaudière :</h2>
       <br />
       {#each level22 as { id, name1, src, prix }}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div
-          on:click={() => (etape2 = "Chaudière " + name1)}
+          on:click={() => {
+            etape.push("Chaudière " + name1);
+            etape = etape;
+          }}
           on:click={() => (goform = true)}
           on:click={increment}
           value={name1}
@@ -237,12 +248,15 @@
       {/each}
     {/if}
 
-    {#if count === 3 && etape2 === "Fuite"}
+    {#if count === 3 && etape[1] === "Fuite"}
       <h2 class="titre-chaudiere">Le problème concerne :</h2>
       {#each level31 as { id, name1, src }}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div
-          on:click={() => (etape3 = name1)}
+          on:click={() => {
+            etape.push(name1);
+            etape = etape;
+          }}
           on:click={() => (goform = true)}
           on:click={increment}
           value={name1}
@@ -255,12 +269,15 @@
       {/each}
     {/if}
 
-    {#if count === 3 && etape2 === "Canalisation bouchée"}
+    {#if count === 3 && etape[1] === "Canalisation bouchée"}
       <h2 class="titre-chaudiere">Le problème concerne :</h2>
       {#each level32 as { id, name1, src }}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div
-          on:click={() => (etape3 = name1)}
+          on:click={() => {
+            etape.push(name1);
+            etape = etape;
+          }}
           on:click={() => (goform = true)}
           on:click={increment}
           value={name1}
@@ -273,9 +290,16 @@
       {/each}
     {/if}
 
-    {#if goform === true || etape1 === "Pose"}
+    {#if goform === true || etape[0] === "Pose"}
       <div class="container-form">
         <p class="probleme-resume">
+          Vous nous contactez pour : <span class="strong">
+            {#each etape as pb}
+              <span>{pb.toLowerCase()} </span>
+            {/each}
+          </span>
+        </p>
+        <!-- <p class="probleme-resume">
           Vous nous contactez pour : <span class="strong"
             >{etape1.toLowerCase()}
             {#if etape2}
@@ -288,26 +312,26 @@
               {etape4.toLowerCase()}
             {/if}
           </span>
-        </p>
+        </p> -->
         <div class="fuite-localisation">
           <p>
-            Plus précisément où se situe la fuite sur {#if etape3 === "Lavabo" || etape3 === "Lave-linge"}
+            Plus précisément où se situe la fuite sur {#if etape[2] === "Lavabo" || etape[2] === "Lave-linge"}
               le
-            {:else if etape3 === "Évier" || etape3 === "Arrivée d'eau"}l'
-            {:else if etape3 === "WC suspendues" || etape3 === "Canalisations" || etape3 === "WC classiques"}les
+            {:else if etape[2] === "Évier" || etape[2] === "Arrivée d'eau"}l'
+            {:else if etape[2] === "WC suspendues" || etape[2] === "Canalisations" || etape[2] === "WC classiques"}les
             {:else}
               la
             {/if}
-            {etape3.toLowerCase()} :
+            {etape[2]} :
           </p>
           <div class="fuite-localisation-list">
-            {#if etape3 === "Lavabo" || etape3 === "Évier"}
+            {#if etape[2] === "Lavabo" || etape[2] === "Évier"}
               {#each fuites as fuite}
                 <label class="form-control">
                   <input
                     class="checkmark"
                     type="radio"
-                    bind:group={etape4}
+                    bind:group={etape[3]}
                     name="fuites"
                     value={fuite}
                   />
@@ -316,13 +340,13 @@
               {/each}
             {/if}
 
-            {#if etape3 === "Baignoire" || etape3 === "Douche"}
+            {#if etape[2] === "Baignoire" || etape[2] === "Douche"}
               {#each fuites2 as fuite2}
                 <label class="form-control">
                   <input
                     class="checkmark"
                     type="radio"
-                    bind:group={etape4}
+                    bind:group={etape[3]}
                     name="fuites2"
                     value={fuite2}
                   />
@@ -331,13 +355,13 @@
               {/each}
             {/if}
 
-            {#if etape3 === "WC classiques"}
+            {#if etape[2] === "WC classiques"}
               {#each fuites3 as fuite}
                 <label class="form-control">
                   <input
                     class="checkmark"
                     type="radio"
-                    bind:group={etape4}
+                    bind:group={etape[3]}
                     name="fuites3"
                     value={fuite}
                   />
@@ -346,13 +370,13 @@
               {/each}
             {/if}
 
-            {#if etape3 === "WC suspendues"}
+            {#if etape[2] === "WC suspendues"}
               {#each fuites4 as fuite}
                 <label class="form-control">
                   <input
                     class="checkmark"
                     type="radio"
-                    bind:group={etape4}
+                    bind:group={etape[3]}
                     name="fuites4"
                     value={fuite}
                   />
@@ -361,13 +385,13 @@
               {/each}
             {/if}
 
-            {#if etape3 === "Lave-linge"}
+            {#if etape[2] === "Lave-linge"}
               {#each fuites5 as fuite}
                 <label class="form-control">
                   <input
                     class="checkmark"
                     type="radio"
-                    bind:group={etape4}
+                    bind:group={etape[3]}
                     name="fuites5"
                     value={fuite}
                   />
@@ -376,13 +400,13 @@
               {/each}
             {/if}
 
-            {#if etape3 === "Canalisations" || etape3 === "Arrivée d'eau"}
+            {#if etape[2] === "Canalisations" || etape[2] === "Arrivée d'eau"}
               {#each fuites6 as fuite}
                 <label class="form-control">
                   <input
                     class="checkmark"
                     type="radio"
-                    bind:group={etape4}
+                    bind:group={etape[3]}
                     name="fuites6"
                     value={fuite}
                   />
@@ -415,26 +439,35 @@
     {/if}
   </div>
   <div>
-    {#if count > 1 && etape1 !== "Pose"}
+    {#if count > 1 || etape[0] === "Pose"}
       <button on:click={() => (goform = false)} on:click={decrement}>
         retour
       </button>
     {/if}
 
-    {#if count > 1 && etape1 === "Pose"}
-      <button on:click={() => ((goform = false), (etape1 = ""), (count = 1))}>
+    <!-- {#if count > 1 && etape[0] !== "Pose"}
+      <button on:click={() => (goform = false)} on:click={decrement}>
         retour
       </button>
     {/if}
+
+    {#if count > 1 && etape[0] === "Pose"}
+      <button on:click={() => ((goform = false), (etape[0] = ""), (count = 1))}>
+        retour
+      </button>
+    {/if} -->
   </div>
-  <!-- <p>étape {count}</p>
+  <p>compteur {count}</p>
   <ul>
-    <li>1 {etape1}</li>
-    <li>2 {etape2}</li>
+    <!-- <li>2 {etape2}</li>
     <li>3 {etape3}</li>
-    <li>4 {etape4}</li>
+    <li>4 {etape4}</li> -->
+    {#each etape as pb}
+      <li>{pb}</li>
+    {/each}
+
     <li>form {goform}</li>
-  </ul> -->
+  </ul>
 </main>
 
 <style>
