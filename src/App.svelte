@@ -1,9 +1,20 @@
 <script>
   // @ts-nocheck
-
+  import {
+    useForm,
+    Hint,
+    validators,
+    minLength,
+    email,
+    required,
+    pattern,
+    HintGroup,
+  } from "svelte-use-form";
   import cpaLogo from "./assets/CycloPlomberie_LogoH.svg";
   // import svelteLogo from './assets/svelte.svg'
   // import Counter from "./lib/Counter.svelte";
+  const form = useForm();
+  const requiredMessage = "Merci de remplir ce champ";
   let count = 1;
   const increment = () => {
     count += 1;
@@ -16,12 +27,16 @@
     // etape[count] = "";
   };
   $: etape = [];
-  let etape1;
-  let etape2;
-  let etape3;
-  let etape4;
-  let etape5;
-  let etape6;
+  let villes = [
+    "",
+    "Amiens",
+    "Longueau",
+    "Rivery",
+    "Camon",
+    "Cagny",
+    "Pont de metz",
+    "Salouël",
+  ];
   let goform = false;
   let level1 = [
     { id: "1-1", name1: "Dépannage", src: "/pictos/depannage.svg" },
@@ -269,7 +284,7 @@
       {/each}
     {/if}
 
-    {#if count === 3 && etape[1] === "Canalisation bouchée"}
+    {#if count == 3 && etape[1] === "Canalisation bouchée"}
       <h2 class="titre-chaudiere">Le problème concerne :</h2>
       {#each level32 as { id, name1, src }}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -313,127 +328,219 @@
             {/if}
           </span>
         </p> -->
-        <div class="fuite-localisation">
-          <p>
-            Plus précisément où se situe la fuite sur {#if etape[2] === "Lavabo" || etape[2] === "Lave-linge"}
-              le
-            {:else if etape[2] === "Évier" || etape[2] === "Arrivée d'eau"}l'
-            {:else if etape[2] === "WC suspendues" || etape[2] === "Canalisations" || etape[2] === "WC classiques"}les
-            {:else}
-              la
-            {/if}
-            {etape[2]} :
-          </p>
-          <div class="fuite-localisation-list">
-            {#if etape[2] === "Lavabo" || etape[2] === "Évier"}
-              {#each fuites as fuite}
-                <label class="form-control">
-                  <input
-                    class="checkmark"
-                    type="radio"
-                    bind:group={etape[3]}
-                    name="fuites"
-                    value={fuite}
-                  />
-                  {fuite}
-                </label>
-              {/each}
-            {/if}
+        {#if etape[1] === "Fuite"}
+          <div class="fuite-localisation">
+            <p>
+              Plus précisément où se situe la fuite sur {#if etape[2] === "Lavabo" || etape[2] === "Lave-linge"}
+                le
+              {:else if etape[2] === "Évier" || etape[2] === "Arrivée d'eau"}l'
+              {:else if etape[2] === "WC suspendues" || etape[2] === "Canalisations" || etape[2] === "WC classiques"}les
+              {:else}
+                la
+              {/if}
+              {etape[2]} :
+            </p>
+            <div class="fuite-localisation-list">
+              {#if etape[2] === "Lavabo" || etape[2] === "Évier"}
+                {#each fuites as fuite}
+                  <label class="form-control">
+                    <input
+                      class="checkmark"
+                      type="radio"
+                      bind:group={etape[3]}
+                      name="fuites"
+                      value={fuite}
+                    />
+                    {fuite}
+                  </label>
+                {/each}
+              {/if}
 
-            {#if etape[2] === "Baignoire" || etape[2] === "Douche"}
-              {#each fuites2 as fuite2}
-                <label class="form-control">
-                  <input
-                    class="checkmark"
-                    type="radio"
-                    bind:group={etape[3]}
-                    name="fuites2"
-                    value={fuite2}
-                  />
-                  {fuite2}
-                </label>
-              {/each}
-            {/if}
+              {#if etape[2] === "Baignoire" || etape[2] === "Douche"}
+                {#each fuites2 as fuite2}
+                  <label class="form-control">
+                    <input
+                      class="checkmark"
+                      type="radio"
+                      bind:group={etape[3]}
+                      name="fuites2"
+                      value={fuite2}
+                    />
+                    {fuite2}
+                  </label>
+                {/each}
+              {/if}
 
-            {#if etape[2] === "WC classiques"}
-              {#each fuites3 as fuite}
-                <label class="form-control">
-                  <input
-                    class="checkmark"
-                    type="radio"
-                    bind:group={etape[3]}
-                    name="fuites3"
-                    value={fuite}
-                  />
-                  {fuite}
-                </label>
-              {/each}
-            {/if}
+              {#if etape[2] === "WC classiques"}
+                {#each fuites3 as fuite}
+                  <label class="form-control">
+                    <input
+                      class="checkmark"
+                      type="radio"
+                      bind:group={etape[3]}
+                      name="fuites3"
+                      value={fuite}
+                    />
+                    {fuite}
+                  </label>
+                {/each}
+              {/if}
 
-            {#if etape[2] === "WC suspendues"}
-              {#each fuites4 as fuite}
-                <label class="form-control">
-                  <input
-                    class="checkmark"
-                    type="radio"
-                    bind:group={etape[3]}
-                    name="fuites4"
-                    value={fuite}
-                  />
-                  {fuite}
-                </label>
-              {/each}
-            {/if}
+              {#if etape[2] === "WC suspendues"}
+                {#each fuites4 as fuite}
+                  <label class="form-control">
+                    <input
+                      class="checkmark"
+                      type="radio"
+                      bind:group={etape[3]}
+                      name="fuites4"
+                      value={fuite}
+                    />
+                    {fuite}
+                  </label>
+                {/each}
+              {/if}
 
-            {#if etape[2] === "Lave-linge"}
-              {#each fuites5 as fuite}
-                <label class="form-control">
-                  <input
-                    class="checkmark"
-                    type="radio"
-                    bind:group={etape[3]}
-                    name="fuites5"
-                    value={fuite}
-                  />
-                  {fuite}
-                </label>
-              {/each}
-            {/if}
+              {#if etape[2] === "Lave-linge"}
+                {#each fuites5 as fuite}
+                  <label class="form-control">
+                    <input
+                      class="checkmark"
+                      type="radio"
+                      bind:group={etape[3]}
+                      name="fuites5"
+                      value={fuite}
+                    />
+                    {fuite}
+                  </label>
+                {/each}
+              {/if}
 
-            {#if etape[2] === "Canalisations" || etape[2] === "Arrivée d'eau"}
-              {#each fuites6 as fuite}
-                <label class="form-control">
-                  <input
-                    class="checkmark"
-                    type="radio"
-                    bind:group={etape[3]}
-                    name="fuites6"
-                    value={fuite}
-                  />
-                  {fuite}
-                </label>
-              {/each}
-            {/if}
+              {#if etape[2] === "Canalisations" || etape[2] === "Arrivée d'eau"}
+                {#each fuites6 as fuite}
+                  <label class="form-control">
+                    <input
+                      class="checkmark"
+                      type="radio"
+                      bind:group={etape[3]}
+                      name="fuites6"
+                      value={fuite}
+                    />
+                    {fuite}
+                  </label>
+                {/each}
+              {/if}
+            </div>
           </div>
-        </div>
-        <form action="" class="cpa-form">
+        {/if}
+        <form use:form action="" class="cpa-form">
           <h2>Renseignements</h2>
           <div class="info">
+            <label for="probleme">Problème</label>
             <input
-              class="fname"
+              readonly
+              class="input"
               type="text"
-              name="name"
-              placeholder="Full name"
+              name="probleme"
+              value={etape.join(" ").toLowerCase()}
+              use:validators={[required]}
             />
-            <input type="text" name="name" placeholder="Email" />
-            <input type="text" name="name" placeholder="Phone number" />
-            <input type="text" name="name" placeholder="Website" />
+            <label for="nom">Nom<sup class="champ-oblig">*</sup></label>
+            <input
+              class="input"
+              type="text"
+              name="nom"
+              use:validators={[required]}
+            />
+            <HintGroup for="nom">
+              <Hint on="required">{requiredMessage}</Hint>
+            </HintGroup>
+            <label for="prenom">Prénom<sup class="champ-oblig">*</sup></label>
+            <input
+              class="input"
+              type="text"
+              name="prenom"
+              use:validators={[required]}
+            />
+            <HintGroup for="prenom">
+              <Hint on="required">{requiredMessage}</Hint>
+            </HintGroup>
+            <label for="email">Email<sup class="champ-oblig">*</sup></label>
+            <input
+              class="input"
+              type="email"
+              name="email"
+              use:validators={[required, email]}
+            />
+            <HintGroup for="email">
+              <Hint on="required">{requiredMessage}</Hint>
+              <Hint on="email" hideWhenRequired>L'adresse n'est pas valide</Hint
+              >
+            </HintGroup>
+            <label for="tel">Téléphone<sup class="champ-oblig">*</sup></label>
+            <input
+              class="input"
+              type="tel"
+              name="tel"
+              use:validators={[
+                required,
+                pattern(
+                  /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/gm
+                ),
+              ]}
+            />
+            <HintGroup for="tel">
+              <Hint on="required">{requiredMessage}</Hint>
+              <Hint on="pattern" hideWhenRequired
+                >Le numéro n'est pas valide</Hint
+              >
+            </HintGroup>
+
+            <label for="ville">Ville<sup class="champ-oblig">*</sup></label>
+            <div class="select">
+              <select name="ville">
+                {#each villes as ville}
+                  <option value={ville} use:validators={[required]}
+                    >{ville}</option
+                  >
+                {/each}
+              </select>
+            </div>
+            <HintGroup for="ville">
+              <Hint on="required">Merci de choisir une commune</Hint>
+            </HintGroup>
+            <label for="adresse1"
+              >Adresse (n° et rue)<sup class="champ-oblig">*</sup></label
+            >
+            <input
+              class="input"
+              placeholder="numéro et rue"
+              type="text"
+              name="adresse1"
+              use:validators={[required]}
+            />
+            <HintGroup for="adresse1">
+              <Hint on="required">{requiredMessage}</Hint>
+            </HintGroup>
+            <label for="adresse2">Complément d'adresse</label>
+            <input
+              class="input"
+              placeholder="appartement etc."
+              type="text"
+              name="adresse2"
+            />
+            <label for="dispo">Disponibilité pour un appel</label>
+            <input
+              class="input"
+              placeholder="Veuillez saisir une plage horaire"
+              type="text"
+              name="dispo"
+            />
+
+            <button type="submit" href="/" disabled={!$form.valid}
+              >Envoyer</button
+            >
           </div>
-          <p>Message</p>
-          <div>
-            <textarea rows="4" />
-          </div>
-          <button type="submit" href="/">Submit</button>
         </form>
       </div>
     {/if}
@@ -458,16 +565,14 @@
     {/if} -->
   </div>
   <p>compteur {count}</p>
-  <ul>
-    <!-- <li>2 {etape2}</li>
-    <li>3 {etape3}</li>
-    <li>4 {etape4}</li> -->
+  <!-- <ul>
+   
     {#each etape as pb}
       <li>{pb}</li>
     {/each}
 
     <li>form {goform}</li>
-  </ul>
+  </ul> -->
 </main>
 
 <style>
