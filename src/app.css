@@ -94,16 +94,16 @@ body {
   background: var(--fond);
 }
 
-a {
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
-}
+} */
 
-body {
+.app {
   margin: 0;
   display: flex;
   place-items: center;
@@ -111,26 +111,27 @@ body {
   min-height: 100vh;
 }
 
-h1 {
+/* h1 {
   font-size: var(--step-4);
   font-weight: 900;
 }
 h2 {
   font-size: var(--step-3);
   font-weight: 900;
-}
+} */
 /* h3 {
   font-size: var(--step-2);
   font-weight: 900;
 } */
 
-.container {
+.container-app {
+  margin: 0 auto;
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap:wrap;
 }
-.card {
+.app .card {
   width: 7rem;
   height: 7rem;
   background: var(--fond);
@@ -146,10 +147,10 @@ h2 {
   border-radius: 20px;
   cursor: pointer;
 }
-.card:hover {
+.app .card:hover {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);;
 }
-.card-tarif {
+.app .card-tarif {
   color: var(--gris1);
   font-weight: 400;
   font-size: var(--step--2);
@@ -194,7 +195,7 @@ h2 {
   margin-top: -5px;
 }
 /* input */
-.input {
+.app .input {
   font-size: 16px;
   font-size: max(16px, 1em);
   font-family: inherit;
@@ -205,33 +206,33 @@ h2 {
   transition: 180ms box-shadow ease-in-out;
 }
 
-.input:focus {
+.app .input:focus {
   border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
   box-shadow: 0 0 0 3px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 40%), 0.8);
   outline: 3px solid transparent;
 }
 
-.input:not(textarea) {
+.app .input:not(textarea) {
   line-height: 1;
   height: 2.25rem;
 }
 
-input[type=file] {
+.app input[type=file] {
   font-size: 0.9em;
   padding-top: 0.35rem;
 }
 
-textarea.input {
+.app textarea.input {
   resize: vertical;
 }
 
-.input[readonly] {
+.app .input[readonly] {
   border-style: dotted;
   cursor: not-allowed;
   color: #777;
 }
 
-.input[disabled] {
+.app .input[disabled] {
   --input-border: #ccc;
   background-color: #eee;
   cursor: not-allowed;
@@ -356,6 +357,9 @@ select[multiple] option {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 .fuite-localisation-list {
   display: grid;
@@ -446,8 +450,8 @@ button:disabled {
 
 
 @media (min-width: 768px)  { 
-  .container {
-    margin: var(--space-l) 0;
+  .container-app {
+    /* margin: var(--space-l) 0; */
   }
 .cpa-form {
   width: 60vw;

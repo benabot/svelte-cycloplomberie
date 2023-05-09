@@ -197,124 +197,121 @@
   ];
 </script>
 
-<main>
-  <div>
-    <img src={cpaLogo} class="logo svelte" alt="cycloplomberie Amiens Logo" />
-  </div>
-  <h1>Formulaire</h1>
-  <div class="container">
-    {#if count === 1}
-      <h2 class="titre-chaudiere">Décrivez votre problème ou votre projet</h2>
-      {#each level1 as { id, name1, src }}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div
-          on:click={() => {
-            etape.push(name1);
-            etape = etape;
-          }}
-          on:click={increment}
-          value={name1}
-          class="card"
-        >
-          <img class="card-elem card-img" {src} alt={name1} />
+<div class="container-app">
+  {#if count === 1}
+    <h2 class="titre-chaudiere titre2">
+      Décrivez votre problème ou votre projet
+    </h2>
+    {#each level1 as { id, name1, src }}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        on:click={() => {
+          etape.push(name1);
+          etape = etape;
+        }}
+        on:click={increment}
+        value={name1}
+        class="card"
+      >
+        <img class="card-elem card-img" {src} alt={name1} />
 
-          <h3 class="card-elem">{name1}</h3>
-        </div>
-      {/each}
-    {/if}
-    {#if count === 2 && etape[0] === "Dépannage"}
-      {#each level21 as { id, name1, src }}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div
-          on:click={() => {
-            etape.push(name1);
-            etape = etape;
-          }}
-          on:click={increment}
-          value={name1}
-          class="card"
-        >
-          <img class="card-elem card-img" {src} alt={name1} />
+        <h3 class="card-elem">{name1}</h3>
+      </div>
+    {/each}
+  {/if}
+  {#if count === 2 && etape[0] === "Dépannage"}
+    {#each level21 as { id, name1, src }}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        on:click={() => {
+          etape.push(name1);
+          etape = etape;
+        }}
+        on:click={increment}
+        value={name1}
+        class="card"
+      >
+        <img class="card-elem card-img" {src} alt={name1} />
 
-          <h3 class="card-elem">{name1}</h3>
-        </div>
-      {/each}
-    {/if}
-    {#if count === 2 && etape[0] === "Entretien"}
-      <h2 class="titre-chaudiere">Chaudière :</h2>
-      <br />
-      {#each level22 as { id, name1, src, prix }}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div
-          on:click={() => {
-            etape.push("Chaudière " + name1);
-            etape = etape;
-          }}
-          on:click={() => (goform = true)}
-          on:click={increment}
-          value={name1}
-          class="card"
-        >
-          <img class="card-elem card-img" {src} alt={name1} />
+        <h3 class="card-elem">{name1}</h3>
+      </div>
+    {/each}
+  {/if}
+  {#if count === 2 && etape[0] === "Entretien"}
+    <h2 class="titre-chaudiere titre2">Chaudière :</h2>
+    <br />
+    {#each level22 as { id, name1, src, prix }}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        on:click={() => {
+          etape.push("Chaudière " + name1);
+          etape = etape;
+        }}
+        on:click={() => (goform = true)}
+        on:click={increment}
+        value={name1}
+        class="card"
+      >
+        <img class="card-elem card-img" {src} alt={name1} />
 
-          <h3 class="card-elem">{name1}</h3>
-          <p class="card-tarif">tarif : {prix} €</p>
-        </div>
-      {/each}
-    {/if}
+        <h3 class="card-elem">{name1}</h3>
+        <p class="card-tarif">tarif : {prix} €</p>
+      </div>
+    {/each}
+  {/if}
 
-    {#if count === 3 && etape[1] === "Fuite"}
-      <h2 class="titre-chaudiere">Le problème concerne :</h2>
-      {#each level31 as { id, name1, src }}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div
-          on:click={() => {
-            etape.push(name1);
-            etape = etape;
-          }}
-          on:click={() => (goform = true)}
-          on:click={increment}
-          value={name1}
-          class="card"
-        >
-          <img class="card-elem card-img" {src} alt={name1} />
+  {#if count === 3 && etape[1] === "Fuite"}
+    <h2 class="titre-chaudiere titre2">Le problème concerne :</h2>
+    {#each level31 as { id, name1, src }}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        on:click={() => {
+          etape.push(name1);
+          etape = etape;
+        }}
+        on:click={() => (goform = true)}
+        on:click={increment}
+        value={name1}
+        class="card"
+      >
+        <img class="card-elem card-img" {src} alt={name1} />
 
-          <h3 class="card-elem">{name1}</h3>
-        </div>
-      {/each}
-    {/if}
+        <h3 class="card-elem">{name1}</h3>
+      </div>
+    {/each}
+  {/if}
 
-    {#if count == 3 && etape[1] === "Canalisation bouchée"}
-      <h2 class="titre-chaudiere">Le problème concerne :</h2>
-      {#each level32 as { id, name1, src }}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div
-          on:click={() => {
-            etape.push(name1);
-            etape = etape;
-          }}
-          on:click={() => (goform = true)}
-          on:click={increment}
-          value={name1}
-          class="card"
-        >
-          <img class="card-elem card-img" {src} alt={name1} />
+  {#if count == 3 && etape[1] === "Canalisation bouchée"}
+    <h2 class="titre-chaudiere titre2">Le problème concerne :</h2>
+    {#each level32 as { id, name1, src }}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        on:click={() => {
+          etape.push(name1);
+          etape = etape;
+        }}
+        on:click={() => (goform = true)}
+        on:click={increment}
+        value={name1}
+        class="card"
+      >
+        <img class="card-elem card-img" {src} alt={name1} />
 
-          <h3 class="card-elem">{name1}</h3>
-        </div>
-      {/each}
-    {/if}
+        <h3 class="card-elem">{name1}</h3>
+      </div>
+    {/each}
+  {/if}
 
-    {#if goform === true || etape[0] === "Pose"}
-      <div class="container-form">
-        <p class="probleme-resume">
-          Vous nous contactez pour : <span class="strong">
-            {#each etape as pb}
-              <span>{pb.toLowerCase()} </span>
-            {/each}
-          </span>
-        </p>
-        <!-- <p class="probleme-resume">
+  {#if goform === true || etape[0] === "Pose"}
+    <div class="container-form">
+      <p class="probleme-resume">
+        Vous nous contactez pour : <span class="strong">
+          {#each etape as pb}
+            <span>{pb.toLowerCase()} </span>
+          {/each}
+        </span>
+      </p>
+      <!-- <p class="probleme-resume">
           Vous nous contactez pour : <span class="strong"
             >{etape1.toLowerCase()}
             {#if etape2}
@@ -328,231 +325,236 @@
             {/if}
           </span>
         </p> -->
-        {#if etape[1] === "Fuite"}
-          <div class="fuite-localisation">
-            <p>
-              Plus précisément où se situe la fuite sur {#if etape[2] === "Lavabo" || etape[2] === "Lave-linge"}
-                le
-              {:else if etape[2] === "Évier" || etape[2] === "Arrivée d'eau"}l'
-              {:else if etape[2] === "WC suspendues" || etape[2] === "Canalisations" || etape[2] === "WC classiques"}les
-              {:else}
-                la
-              {/if}
-              {etape[2]} :
-            </p>
-            <div class="fuite-localisation-list">
-              {#if etape[2] === "Lavabo" || etape[2] === "Évier"}
-                {#each fuites as fuite}
-                  <label class="form-control">
-                    <input
-                      class="checkmark"
-                      type="radio"
-                      bind:group={etape[3]}
-                      name="fuites"
-                      value={fuite}
-                    />
-                    {fuite}
-                  </label>
-                {/each}
-              {/if}
+      {#if etape[1] === "Fuite"}
+        <div class="fuite-localisation">
+          <p>
+            Plus précisément où se situe la fuite sur {#if etape[2] === "Lavabo" || etape[2] === "Lave-linge"}
+              le
+            {:else if etape[2] === "Évier" || etape[2] === "Arrivée d'eau"}l'
+            {:else if etape[2] === "WC suspendues" || etape[2] === "Canalisations" || etape[2] === "WC classiques"}les
+            {:else}
+              la
+            {/if}
+            {etape[2]} :
+          </p>
+          <div class="fuite-localisation-list">
+            {#if etape[2] === "Lavabo" || etape[2] === "Évier"}
+              {#each fuites as fuite}
+                <label class="form-control">
+                  <input
+                    class="checkmark"
+                    type="radio"
+                    bind:group={etape[3]}
+                    name="fuites"
+                    value={fuite}
+                  />
+                  {fuite}
+                </label>
+              {/each}
+            {/if}
 
-              {#if etape[2] === "Baignoire" || etape[2] === "Douche"}
-                {#each fuites2 as fuite2}
-                  <label class="form-control">
-                    <input
-                      class="checkmark"
-                      type="radio"
-                      bind:group={etape[3]}
-                      name="fuites2"
-                      value={fuite2}
-                    />
-                    {fuite2}
-                  </label>
-                {/each}
-              {/if}
+            {#if etape[2] === "Baignoire" || etape[2] === "Douche"}
+              {#each fuites2 as fuite2}
+                <label class="form-control">
+                  <input
+                    class="checkmark"
+                    type="radio"
+                    bind:group={etape[3]}
+                    name="fuites2"
+                    value={fuite2}
+                  />
+                  {fuite2}
+                </label>
+              {/each}
+            {/if}
 
-              {#if etape[2] === "WC classiques"}
-                {#each fuites3 as fuite}
-                  <label class="form-control">
-                    <input
-                      class="checkmark"
-                      type="radio"
-                      bind:group={etape[3]}
-                      name="fuites3"
-                      value={fuite}
-                    />
-                    {fuite}
-                  </label>
-                {/each}
-              {/if}
+            {#if etape[2] === "WC classiques"}
+              {#each fuites3 as fuite}
+                <label class="form-control">
+                  <input
+                    class="checkmark"
+                    type="radio"
+                    bind:group={etape[3]}
+                    name="fuites3"
+                    value={fuite}
+                  />
+                  {fuite}
+                </label>
+              {/each}
+            {/if}
 
-              {#if etape[2] === "WC suspendues"}
-                {#each fuites4 as fuite}
-                  <label class="form-control">
-                    <input
-                      class="checkmark"
-                      type="radio"
-                      bind:group={etape[3]}
-                      name="fuites4"
-                      value={fuite}
-                    />
-                    {fuite}
-                  </label>
-                {/each}
-              {/if}
+            {#if etape[2] === "WC suspendues"}
+              {#each fuites4 as fuite}
+                <label class="form-control">
+                  <input
+                    class="checkmark"
+                    type="radio"
+                    bind:group={etape[3]}
+                    name="fuites4"
+                    value={fuite}
+                  />
+                  {fuite}
+                </label>
+              {/each}
+            {/if}
 
-              {#if etape[2] === "Lave-linge"}
-                {#each fuites5 as fuite}
-                  <label class="form-control">
-                    <input
-                      class="checkmark"
-                      type="radio"
-                      bind:group={etape[3]}
-                      name="fuites5"
-                      value={fuite}
-                    />
-                    {fuite}
-                  </label>
-                {/each}
-              {/if}
+            {#if etape[2] === "Lave-linge"}
+              {#each fuites5 as fuite}
+                <label class="form-control">
+                  <input
+                    class="checkmark"
+                    type="radio"
+                    bind:group={etape[3]}
+                    name="fuites5"
+                    value={fuite}
+                  />
+                  {fuite}
+                </label>
+              {/each}
+            {/if}
 
-              {#if etape[2] === "Canalisations" || etape[2] === "Arrivée d'eau"}
-                {#each fuites6 as fuite}
-                  <label class="form-control">
-                    <input
-                      class="checkmark"
-                      type="radio"
-                      bind:group={etape[3]}
-                      name="fuites6"
-                      value={fuite}
-                    />
-                    {fuite}
-                  </label>
-                {/each}
-              {/if}
-            </div>
+            {#if etape[2] === "Canalisations" || etape[2] === "Arrivée d'eau"}
+              {#each fuites6 as fuite}
+                <label class="form-control">
+                  <input
+                    class="checkmark"
+                    type="radio"
+                    bind:group={etape[3]}
+                    name="fuites6"
+                    value={fuite}
+                  />
+                  {fuite}
+                </label>
+              {/each}
+            {/if}
           </div>
-        {/if}
-        <form use:form action="" class="cpa-form">
-          <h2>Renseignements</h2>
-          <div class="info">
-            <label for="probleme">Problème</label>
-            <input
-              readonly
-              class="input"
-              type="text"
-              name="probleme"
-              value={etape.join(" ").toLowerCase()}
-              use:validators={[required]}
-            />
-            <label for="nom">Nom<sup class="champ-oblig">*</sup></label>
-            <input
-              class="input"
-              type="text"
-              name="nom"
-              use:validators={[required]}
-            />
-            <HintGroup for="nom">
-              <Hint on="required">{requiredMessage}</Hint>
-            </HintGroup>
-            <label for="prenom">Prénom<sup class="champ-oblig">*</sup></label>
-            <input
-              class="input"
-              type="text"
-              name="prenom"
-              use:validators={[required]}
-            />
-            <HintGroup for="prenom">
-              <Hint on="required">{requiredMessage}</Hint>
-            </HintGroup>
-            <label for="email">Email<sup class="champ-oblig">*</sup></label>
-            <input
-              class="input"
-              type="email"
-              name="email"
-              use:validators={[required, email]}
-            />
-            <HintGroup for="email">
-              <Hint on="required">{requiredMessage}</Hint>
-              <Hint on="email" hideWhenRequired>L'adresse n'est pas valide</Hint
-              >
-            </HintGroup>
-            <label for="tel">Téléphone<sup class="champ-oblig">*</sup></label>
-            <input
-              class="input"
-              type="tel"
-              name="tel"
-              use:validators={[
-                required,
-                pattern(
-                  /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/gm
-                ),
-              ]}
-            />
-            <HintGroup for="tel">
-              <Hint on="required">{requiredMessage}</Hint>
-              <Hint on="pattern" hideWhenRequired
-                >Le numéro n'est pas valide</Hint
-              >
-            </HintGroup>
-
-            <label for="ville">Ville<sup class="champ-oblig">*</sup></label>
-            <div class="select">
-              <select name="ville">
-                {#each villes as ville}
-                  <option value={ville} use:validators={[required]}
-                    >{ville}</option
-                  >
-                {/each}
-              </select>
-            </div>
-            <HintGroup for="ville">
-              <Hint on="required">Merci de choisir une commune</Hint>
-            </HintGroup>
-            <label for="adresse1"
-              >Adresse (n° et rue)<sup class="champ-oblig">*</sup></label
+        </div>
+      {/if}
+      <form
+        use:form
+        action="https://cycloplomberie-amiens.fr/wp-json/contact-form-7/v1/contact-forms/111/feedback"
+        method="post"
+        class="cpa-form"
+      >
+        <h3>Renseignements</h3>
+        <div class="info">
+          <label for="probleme">Problème</label>
+          <input
+            readonly
+            class="input"
+            type="text"
+            name="probleme"
+            value={etape.join(" ").toLowerCase()}
+            use:validators={[required]}
+          />
+          <label for="nom">Nom<sup class="champ-oblig">*</sup></label>
+          <input
+            class="input"
+            type="text"
+            name="nom"
+            use:validators={[required]}
+          />
+          <HintGroup for="nom">
+            <Hint on="required">{requiredMessage}</Hint>
+          </HintGroup>
+          <label for="prenom">Prénom<sup class="champ-oblig">*</sup></label>
+          <input
+            class="input"
+            type="text"
+            name="prenom"
+            use:validators={[required]}
+          />
+          <HintGroup for="prenom">
+            <Hint on="required">{requiredMessage}</Hint>
+          </HintGroup>
+          <label for="email">Email<sup class="champ-oblig">*</sup></label>
+          <input
+            class="input"
+            type="email"
+            name="email"
+            use:validators={[required, email]}
+          />
+          <HintGroup for="email">
+            <Hint on="required">{requiredMessage}</Hint>
+            <Hint on="email" hideWhenRequired>L'adresse n'est pas valide</Hint>
+          </HintGroup>
+          <label for="tel">Téléphone<sup class="champ-oblig">*</sup></label>
+          <input
+            class="input"
+            type="tel"
+            name="tel"
+            use:validators={[
+              required,
+              pattern(
+                /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/gm
+              ),
+            ]}
+          />
+          <HintGroup for="tel">
+            <Hint on="required">{requiredMessage}</Hint>
+            <Hint on="pattern" hideWhenRequired>Le numéro n'est pas valide</Hint
             >
-            <input
-              class="input"
-              placeholder="numéro et rue"
-              type="text"
-              name="adresse1"
-              use:validators={[required]}
-            />
-            <HintGroup for="adresse1">
-              <Hint on="required">{requiredMessage}</Hint>
-            </HintGroup>
-            <label for="adresse2">Complément d'adresse</label>
-            <input
-              class="input"
-              placeholder="appartement etc."
-              type="text"
-              name="adresse2"
-            />
-            <label for="dispo">Disponibilité pour un appel</label>
-            <input
-              class="input"
-              placeholder="Veuillez saisir une plage horaire"
-              type="text"
-              name="dispo"
-            />
+          </HintGroup>
 
-            <button type="submit" href="/" disabled={!$form.valid}
-              >Envoyer</button
-            >
+          <label for="ville">Ville<sup class="champ-oblig">*</sup></label>
+          <div class="select">
+            <select name="ville">
+              {#each villes as ville}
+                <option value={ville} use:validators={[required]}
+                  >{ville}</option
+                >
+              {/each}
+            </select>
           </div>
-        </form>
-      </div>
-    {/if}
-  </div>
-  <div>
-    {#if count > 1 || etape[0] === "Pose"}
-      <button on:click={() => (goform = false)} on:click={decrement}>
-        retour
-      </button>
-    {/if}
+          <HintGroup for="ville">
+            <Hint on="required">Merci de choisir une commune</Hint>
+          </HintGroup>
+          <label for="adresse1"
+            >Adresse (n° et rue)<sup class="champ-oblig">*</sup></label
+          >
+          <input
+            class="input"
+            placeholder="numéro et rue"
+            type="text"
+            name="adresse1"
+            use:validators={[required]}
+          />
+          <HintGroup for="adresse1">
+            <Hint on="required">{requiredMessage}</Hint>
+          </HintGroup>
+          <label for="adresse2">Complément d'adresse</label>
+          <input
+            class="input"
+            placeholder="appartement etc."
+            type="text"
+            name="adresse2"
+          />
+          <label for="dispo">Disponibilité pour un appel</label>
+          <input
+            class="input"
+            placeholder="Veuillez saisir une plage horaire"
+            type="text"
+            name="dispo"
+          />
 
-    <!-- {#if count > 1 && etape[0] !== "Pose"}
+          <button
+            type="submit"
+            href="https://cycloplomberie-amiens.fr/wp-json/contact-form-7/v1/contact-forms/111/feedback"
+            disabled={!$form.valid}>Envoyer</button
+          >
+        </div>
+      </form>
+    </div>
+  {/if}
+</div>
+<div>
+  {#if count > 1 || etape[0] === "Pose"}
+    <button on:click={() => (goform = false)} on:click={decrement}>
+      retour
+    </button>
+  {/if}
+
+  <!-- {#if count > 1 && etape[0] !== "Pose"}
       <button on:click={() => (goform = false)} on:click={decrement}>
         retour
       </button>
@@ -563,9 +565,10 @@
         retour
       </button>
     {/if} -->
-  </div>
-  <p>compteur {count}</p>
-  <!-- <ul>
+</div>
+
+<!-- <p>compteur {count}</p> -->
+<!-- <ul>
    
     {#each etape as pb}
       <li>{pb}</li>
@@ -573,7 +576,6 @@
 
     <li>form {goform}</li>
   </ul> -->
-</main>
 
 <style>
   .logo {
