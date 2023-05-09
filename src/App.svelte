@@ -195,6 +195,34 @@
     "Tuyeau percé, abîmé",
     "Je ne sais pas",
   ];
+  // form submit
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+
+    const formElement = event.target,
+      { action, method } = formElement,
+      body = new FormData(formElement);
+
+    fetch(action, {
+      method,
+      body,
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        // Determine if the submission is not valid
+        if (isFormSubmissionError(response)) {
+          // Handle the case when there are validation errors
+        }
+        // Handle the happy path
+      })
+      .catch((error) => {
+        // Handle the case when there's a problem with the request
+      });
+  };
+
+  const formElement = document.querySelector("form");
+
+  formElement.addEventListener("submit", formSubmissionHandler);
 </script>
 
 <div class="container-app">
@@ -485,9 +513,9 @@
             name="tel"
             use:validators={[
               required,
-              pattern(
-                /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/gm
-              ),
+              // pattern(
+              //   /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/gm
+              // ),
             ]}
           />
           <HintGroup for="tel">
@@ -537,11 +565,12 @@
             name="dispo"
           />
 
-          <button
+          <button type="submit" disabled={!$form.valid}>Envoyer</button>
+          <!-- <button
             type="submit"
             href="https://cycloplomberie-amiens.fr/wp-json/contact-form-7/v1/contact-forms/111/feedback"
             disabled={!$form.valid}>Envoyer</button
-          >
+          > -->
         </div>
       </form>
     </div>
