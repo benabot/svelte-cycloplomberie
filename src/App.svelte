@@ -196,33 +196,20 @@
     "Je ne sais pas",
   ];
   // form submit
-  const formSubmissionHandler = (event) => {
-    event.preventDefault();
 
-    const formElement = event.target,
-      { action, method } = formElement,
-      body = new FormData(formElement);
-
-    fetch(action, {
-      method,
-      body,
-    })
+  const handleSubmit = () => {
+    fetch(
+      "https://cycloplomberie-amiens.fr/wp-json/contact-form-7/v1/contact-forms/111/feedback",
+      {
+        method: "POST",
+        body: JSON.stringify($form, null, 1),
+      }
+    )
       .then((response) => response.json())
-      .then((response) => {
-        // Determine if the submission is not valid
-        if (isFormSubmissionError(response)) {
-          // Handle the case when there are validation errors
-        }
-        // Handle the happy path
-      })
-      .catch((error) => {
-        // Handle the case when there's a problem with the request
+      .then((data) => {
+        console.log(data); // read the server response
       });
   };
-
-  const formElement = document.querySelector("form");
-
-  formElement.addEventListener("submit", formSubmissionHandler);
 </script>
 
 <div class="container-app">
@@ -463,6 +450,7 @@
         action="https://cycloplomberie-amiens.fr/wp-json/contact-form-7/v1/contact-forms/111/feedback"
         method="post"
         class="cpa-form"
+        on:submit|preventDefault={handleSubmit}
       >
         <h3>Renseignements</h3>
         <div class="info">
@@ -577,6 +565,9 @@
   {/if}
 </div>
 <div>
+  <pre>
+		{JSON.stringify($form, null, 1)}
+	</pre>
   {#if count > 1 || etape[0] === "Pose"}
     <button on:click={() => (goform = false)} on:click={decrement}>
       retour
@@ -607,19 +598,6 @@
   </ul> -->
 
 <style>
-  .logo {
-    height: 6em;
-    /* padding: 1.5em; */
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 §em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-
   .card-elem {
     width: 100%;
   }
